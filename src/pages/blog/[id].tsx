@@ -40,7 +40,7 @@ export default function BlogId({ blog }: { blog: any }) {
         <div className=" p-5 max-w-sm rounded overflow-hidden shadow-lg">
 
           <div className="m-auto w-1/2">
-            <Image src={blog.item_image.url} alt={blog.title} width={blog.item_image.width} height={blog.item_image.height} />
+            <img src={blog.item_image.url} alt={blog.title} width={blog.item_image.width} height={blog.item_image.height} />
 
           </div>
 
