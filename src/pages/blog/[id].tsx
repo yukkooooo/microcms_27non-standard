@@ -1,6 +1,5 @@
 import Button from "@/components/Button";
 import { client } from "../../../libs/client";
-import Image from "next/image";
 
 export const getStaticProps = async (context: any) => {
   const id = context.params.id;
