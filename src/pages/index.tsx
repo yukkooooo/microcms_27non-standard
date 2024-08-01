@@ -6,9 +6,6 @@ import React from 'react';
 import BasicSlider from '../components/BasicSlider';
 import Button from '../components/Button';
 
-
-
-
 // ブログデータの型を定義
 interface Blog {
   item_image: any;
@@ -39,7 +36,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
       // blogDataの構造に応じて修正
     },
-  }
 };
 
 
@@ -75,9 +71,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories }) => {
               <div key={blog.id} className="flex justify-center items-center flex-wrap md:flex-row ">
 
                 <Link href={`blog/${blog.id}`}>
-
                   <img
-
                     src={blog.item_image.url}
                     alt={blog.title}
                     width={blog.item_image.width}
@@ -85,9 +79,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories }) => {
 
                     className="object-cover  md:w-[70%] lg:w-[40%] mx-auto"
                   />
-
                 </Link>
-
               </div>
             ))}
           </article>
@@ -103,9 +95,6 @@ const Home: React.FC<HomeProps> = ({ blog, categories }) => {
 
       </div>
     </div>
-
-
-
   );
 }
 
