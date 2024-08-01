@@ -19,17 +19,25 @@ interface Blog {
 // コンポーネントのプロパティの型を定義
 interface HomeProps {
   blog: Blog[];
+  categories: any[];
 }
 
 // SSG
 // 静的pageはSSG,動的なページはSSRで作成
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await client.get({ endpoint: "blog", });
-  console.log(data);
+  const categoryData = await client.get({ endpoint: "categories" })
+  console.log(categoryData)
+
+
+  const blogData = await client.get({ endpoint: "blog", });
+  // console.log(blogData);
 
   return {
     props: {
-      blog: data.contents,  // dataの構造に応じて修正
+      blog: blogData.contents,
+      categories: categoryData,
+
+      // blogDataの構造に応じて修正
     },
   }
 };
@@ -37,7 +45,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
 
 
-const Home: React.FC<HomeProps> = ({ blog }) => {
+const Home: React.FC<HomeProps> = ({ blog, categories }) => {
+  console.log(categories.contents)
   return (
     <div>
       <div>
@@ -48,7 +57,7 @@ const Home: React.FC<HomeProps> = ({ blog }) => {
       <div className="flex items-center justify-center md:flex-row   ">
 
         <article className="flex items-center justify-center md:flex-row  ">
-          {blog.map((blog) => (
+          {categories.contents.map((blog) => (
             <button type="button" className="m-6 mt-2 inline-block rounded-full border-2 border-primary-100 px-10 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 shadow-lg transition duration-150 ease-in-out hover:border-primary-accent-200 hover:bg-secondary-50/50 focus:border-primary-accent-200 focus:bg-secondary-50/50 focus:outline-none focus:ring-0 active:border-primary-accent-200 motion-reduce:transition-none dark:border-primary-400 dark:text-primary-300 dark:hover:bg-blue-950 dark:focus:bg-blue-950" key={blog.id}>
               <Link href={`blog/${blog.id}`}><p className="">{blog.title}</p></Link>
 
