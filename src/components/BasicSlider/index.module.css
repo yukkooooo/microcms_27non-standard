@@ -1,5 +1,7 @@
 .slideWrapper {
   max-width: 100%;
+  margin-top: 56px;
+  z-index: 0;
 }
 
 .slideImage {
