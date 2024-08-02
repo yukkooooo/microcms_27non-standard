@@ -106,7 +106,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
                     className="w-[180px] h-[180px] object-cover first-letter:mx-auto  shadow-lg border-1 border-gray-300 rounded-xl mx-5"
                   />
                 </Link>
-                <h4 className="m-6 inline-block size-100">{blog.item_item_name}{blog.item_price_tax}円</h4>
+                {/* <h4 className="m-6 inline-block size-100">{blog.item_item_name}{blog.item_price_tax}円</h4> */}
 
               </div>
             ))}
