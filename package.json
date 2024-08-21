@@ -11,8 +11,10 @@
   "dependencies": {
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
+    "firebase": "^10.12.5",
     "microcms-js-sdk": "^3.1.2",
     "next": "14.2.5",
+    "pagefind": "^1.1.0",
     "react": "^18",
     "react-dom": "^18",
     "splide-nextjs": "^2.4.23",

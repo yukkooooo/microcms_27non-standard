@@ -7,11 +7,14 @@ import BasicSlider from '../components/BasicSlider';
 import Button from '../components/Button';
 
 
+
 // ブログデータの型を定義
 interface Blog {
   item_image: any;
   id: string;
   title: string;
+  item_name: string;
+  item_price_tax: number;
 }
 
 // カテゴリーデータの型を定義
@@ -59,7 +62,7 @@ export const getStaticProps: GetStaticProps = async () => {
       categories: categoryData.contents,
       event: eventData.contents,
 
-      // .contentsを追加
+
     },
   };
 };
@@ -96,20 +99,21 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
         <div className="flex flex-wrap justify-center">
           <article className="flex flex-wrap justify-center m-5">
             {blog.map((blog) => (
-              <div key={blog.id} className="mx-auto text-center ">
+              <div key={blog.id} className="m-10 text-center shadow-lg border-1 border-gray-300 rounded-xl  ">
                 <Link href={`blog/${blog.id}`}>
                   <img
                     src={blog.item_image.url}
                     alt={blog.title}
                     width={blog.item_image.width}
                     height={blog.item_image.height}
-                    className="w-[180px] h-[180px] object-cover first-letter:mx-auto  shadow-lg border-1 border-gray-300 rounded-xl mx-5"
+                    className="w-[180px] h-[180px] object-cover first-letter:mx-auto p-5 "
                   />
                 </Link>
-                {/* <h4 className="m-6 inline-block size-100">{blog.item_item_name}{blog.item_price_tax}円</h4> */}
+                <h4 className="m-6 inline-block size-100">{blog.item_name}</h4>
+                <p className="m-6 inline-block size-100">{blog.item_price_tax}円</p>
 
               </div>
-            ))}
+            ))};
           </article>
 
 

@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import { client } from "../../../libs/client";
 
+
 export const getStaticProps = async (context: any) => {
   const id = context.params.id;
   console.log(context)
