@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const AnimatedText = () => (
+const AnimatedTextNew = () => (
   <motion.div
     initial={{ opacity: 20, x: 300 }}  // 初期状態
     whileInView={{ opacity: 10, x: 0 }}  // ビューに入ったときのアニメーション状態
@@ -9,8 +9,8 @@ const AnimatedText = () => (
     className="text-xl font-bold text-blue-500"
     viewport={{ once: true }}  // ビューに一度だけ表示されたときにアニメーションを実行
   >
-    CATEGORY
+    NEW ARRIVALS
   </motion.div>
 );
 
-export default AnimatedText;
+export default AnimatedTextNew;

@@ -4,8 +4,11 @@ import { client } from "../../libs/client.js";
 import Link from "next/link.js";
 import React, { ReactNode } from 'react';
 import BasicSlider from '../components/BasicSlider';
-import Button from '../components/Button';
 import AnimatedText from '@/components/AnimatedText';
+import NavLinks from "./NavLinks";
+import Hamburger from "./Hamburger";
+import AnimatedTextNew from '@/components/AnimatedTextNew';
+
 
 
 
@@ -80,7 +83,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
       </div>
       <section className="flex items-center justify-center mt-">
         <h4 className="flex items-center justify-center m-0 mx-auto text-xl p-10 ">
-          CATEGORY
+          <AnimatedText />
         </h4>
       </section>
       <div className="flex items-center justify-center flex-wrap ">
@@ -100,7 +103,9 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
       </div>
 
       <div>
-        <h4 className="flex items-center justify-center m-5 text-xl">NEW ARRIVALS</h4>
+        <h4 className="flex items-center justify-center m-5 text-xl">   <AnimatedTextNew />
+        </h4>
+
 
         <div className="flex flex-wrap justify-center">
           <article className="flex flex-wrap justify-center m-5">
