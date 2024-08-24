@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { HeartIcon, ShoppingCartIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import { useAuth } from '@/context/authContext';
 
+
 const Header: React.FC = () => {
   const { isLoggedIn } = useAuth(); // ログイン状態を取得
 
@@ -12,36 +13,37 @@ const Header: React.FC = () => {
 
         <nav className="flex justify-between items-center px-1 py-2 w-full text-neutral-500">
           <ul className="flex space-x-1">
-            <li className="text-xs sm:text-base md:text-lg mx-auto px-2 text-neutral-500"><Link href="/">login</Link></li>
-            <li className="text-xs sm:text-base md:text-lg mx-auto px-2 text-neutral-500"><Link href="/">home</Link></li>
-            <li className="text-xs sm:text-base md:text-lg  mx-auto px-2 text-neutral-500"><Link href="/">about</Link></li>
-            <li className="text-xs sm:text-base md:text-lg mx-auto px-2 text-neutral-500"><Link href="/">contact</Link></li>
+            <li className="text-xs sm:text-base md:text-lg mx-auto px-2  hover:text-blue-500 transition-colors duration-300 text-neutral-500"><Link href="/">login</Link></li>
+            <li className="text-xs sm:text-base md:text-lg mx-auto px-2 hover:text-blue-500 transition-colors duration-300 text-neutral-500"><Link href="/">home</Link></li>
+            <li className="text-xs sm:text-base md:text-lg  mx-auto px-2 hover:text-blue-500 transition-colors duration-300 text-neutral-500"><Link href="/">about</Link></li>
+            <li className="text-xs sm:text-base md:text-lg mx-auto px-2 hover:text-blue-500 transition-colors duration-300 text-neutral-500"><Link href="/">contact</Link></li>
           </ul>
 
           <ul className="flex items-center space-x-1">
 
             <li className="mx-auto px-1">
               <Link href="/about">
-                <HeartIcon className="w-5 h-5" />
+                <HeartIcon className="w-5 h-5  hover:text-blue-500 transition-colors duration-300" />
               </Link>
             </li>
             <li className="mx-auto px-1">
               <Link href="/about">
-                <ShoppingCartIcon className="w-5 h-5" />
+                <ShoppingCartIcon className="w-5 h-5 hover:text-blue-500 transition-colors duration-300" />
               </Link>
             </li>
             <ul className="flex items-center justify-center space-x-4">
               {isLoggedIn && (
                 <li className="flex items-center justify-center mx-auto px-2">
-                  <span className="text-xs text-pink-500 flex items-center">
+                  <span className="text-xs text-green-500 flex items-center ">
                     logged in
-                    <UserCircleIcon className="w-5 h-5 ml-1" />
+                    <UserCircleIcon className="w-5 h-5 ml-1 " />
                   </span> {/* ログイン中のメッセージを表示 */}
                 </li>
               )}
             </ul>
           </ul>
         </nav>
+
       </div>
     </header >
   );

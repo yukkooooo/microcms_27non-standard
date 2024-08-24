@@ -25,11 +25,11 @@ const HeaderLogin = () => {
           <div className='justify-between'>
             <button
               onClick={handleSignOut}
-              className=" b px-1 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-150 ease-in-out"
+              className="text-xs b px-1 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-150 ease-in-out"
             >
               ログアウト
             </button>
-            <button className=" ml-1 b px-1 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-150 ease-in-out"
+            <button className="text-xs  ml-1 b px-1 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-150 ease-in-out"
             >topに戻る</button>
           </div>
         </div>

@@ -5,6 +5,9 @@ import Link from "next/link.js";
 import React, { ReactNode } from 'react';
 import BasicSlider from '../components/BasicSlider';
 import Button from '../components/Button';
+import AnimatedText from '@/components/AnimatedText';
+
+
 
 
 
@@ -75,9 +78,11 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
       <div >
         <BasicSlider />
       </div>
-      <h4 className="flex items-center justify-center mt-10 text-xl p-10 ">
-        CATEGORY
-      </h4>
+      <section className="flex items-center justify-center mt-">
+        <h4 className="flex items-center justify-center m-0 mx-auto text-xl p-10 ">
+          CATEGORY
+        </h4>
+      </section>
       <div className="flex items-center justify-center flex-wrap ">
         <article className="flex items-center justify-center md:flex-row flex-wrap ">
           {categories.map((category) => (
