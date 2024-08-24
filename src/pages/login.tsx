@@ -3,7 +3,6 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from 'react';
 import Link from 'next/link';
 import { app } from '@/firebase';
-import HeaderLogin from "@/components/headerlogin";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -23,9 +22,7 @@ const Login: React.FC = () => {
   }
 
   return (
-
-    <div className="mt-10 max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
-      <HeaderLogin />
+    <div className="p-4 bg-white rounded-lg shadow-md">
       <h1 className="text-2xl font-bold mb-4">ログイン</h1>
       <div className="pb-4">
         <form>
@@ -36,7 +33,7 @@ const Login: React.FC = () => {
             <input
               type="email"
               name="email"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-gray-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -47,13 +44,13 @@ const Login: React.FC = () => {
             <input
               type="password"
               name="password"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-gray-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <button
             type="button"
-            className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-gray-700"
+            className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700"
             onClick={doLogin}
           >
             ログイン
