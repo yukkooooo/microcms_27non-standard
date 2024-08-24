@@ -1,36 +1,43 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { auth } from '@/firebase'
-import { onAuthStateChanged } from 'firebase/auth'
+import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { auth } from '@/firebase'; // Firebaseの初期化設定に基づく
+import { onAuthStateChanged, User } from 'firebase/auth'; // Firebaseのユーザー型をインポート
 
-// コンテキストを作成
-const AuthContext = React.createContext<any>(null)
+// コンテキストの型を定義
+type AuthContextType = {
+  isLoggedIn: boolean;
+  currentUser: User | null;
+};
 
-export function useAuth() {
-  // useContextで作成したコンテキストを呼び出す
-  return useContext(AuthContext)
-}
+// デフォルト値を設定してコンテキストを作成
+const AuthContext = createContext<AuthContextType>({
+  isLoggedIn: false,
+  currentUser: null,
+});
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [currentUser, setCurrentUser] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
+// プロバイダーコンポーネントを作成
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true); // ローディング状態を管理
+  const isLoggedIn = !!currentUser; // currentUserが存在する場合、ログイン状態とする
 
-  // 初回レンダリングのみ関数を実行させる
   useEffect(() => {
-    // onAuthStateChangedでログインの状態を監視する
-    const unsubscribe = onAuthStateChanged(auth, async user => {
-      // ユーザー情報をcurrentUserに格納する
-      setCurrentUser(user)
-      setLoading(false)
-    })
-    return unsubscribe
-  }, [])
+    // ユーザーのログイン状態を監視する
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setLoading(false); // ローディングが完了したらfalseに設定
+    });
 
-  const value = { currentUser }
+    return unsubscribe; // クリーンアップ
+  }, []);
 
-  // 全コンポーネントをラッピングするためのプロバイダー
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider value={{ isLoggedIn, currentUser }}>
       {!loading && children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
+
+// コンテキストを使用するためのカスタムフック
+export const useAuth = () => {
+  return useContext(AuthContext);
+};

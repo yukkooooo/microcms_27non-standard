@@ -41,6 +41,7 @@ interface HomeProps {
   blog: Blog[];
   categories: Category[];
   event: Event[];
+  isLoggedIn: boolean[];
 
 }
 

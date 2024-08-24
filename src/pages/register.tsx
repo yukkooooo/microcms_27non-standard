@@ -1,32 +1,45 @@
 import { auth, app } from '@/firebase';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 // Firebaseの初期化を行うためfirebaseAppをインポート
 // firebase.tsのエクスポートに合わせてインポート
 
-
 export default function Register() {
-  // useStateでユーザーが入力したメールアドレスとパスワードをemailとpasswordに格納する
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // ログイン状態を管理
+  const router = useRouter();
 
-  // ユーザーが登録ボタンを押したときにdoRegister関数が実行される
+  useEffect(() => {
+    // ユーザーがログインしているかどうかを監視する
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const doRegister = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // ユーザー登録すると自動的にログインされてuserCredential.userでユーザーの情報を取得できる
-        const user = userCredential.user;
+        // 登録完了時にトップページにリダイレクト
         alert('登録完了！');
-        console.log(user);
+        router.push('/');
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
   return (
     <div className="max-w-md mx-auto bg-white p-8 mt-10 rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold mb-6">新規登録</h1>
+      {isLoggedIn && <p className="text-green-500">ログイン中</p>} {/* ログイン中のメッセージ */}
       <div>
         <div className="mb-4">
           <label className="block text-gray-700">メールアドレス：</label>
@@ -54,5 +67,5 @@ export default function Register() {
         </button>
       </div>
     </div>
-  )
+  );
 }
