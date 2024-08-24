@@ -22,12 +22,16 @@ const HeaderLogin = () => {
           <div className="text-gray-800">
             ログインしています。
           </div>
-          <button
-            onClick={handleSignOut}
-            className=" b px-1 py-1 mt-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-150 ease-in-out"
-          >
-            ログアウト
-          </button>
+          <div className='justify-between'>
+            <button
+              onClick={handleSignOut}
+              className=" b px-1 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-150 ease-in-out"
+            >
+              ログアウト
+            </button>
+            <button className=" ml-1 b px-1 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-150 ease-in-out"
+            >topに戻る</button>
+          </div>
         </div>
       ) : (
         <div className="text-gray-600">既に会員登録している方はログインしてください
