@@ -12,6 +12,7 @@
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
     "firebase": "^10.12.5",
+    "firebaseui": "^6.1.0",
     "framer-motion": "^11.3.30",
     "microcms-js-sdk": "^3.1.2",
     "next": "14.2.5",

@@ -20,7 +20,7 @@ const HeaderLogin = () => {
       {currentUser ? (
         <div className="space-y-2 flex justify-between">
           <div className="text-gray-800">
-            ログインしています。
+            ログインしています
           </div>
           <div className='justify-between'>
             <button
@@ -34,8 +34,8 @@ const HeaderLogin = () => {
           </div>
         </div>
       ) : (
-        <div className="text-gray-600">既に会員登録している方はログインしてください
-          <br /> 新規会員登録は<a>こちらから</a></div>
+        <div className="text-gray-600 text-center m-auto text-s">既に会員登録している方はログインしてください
+          <br /> 新規会員登録の方は<a>こちらから</a></div>
       )}
     </div>
   );
