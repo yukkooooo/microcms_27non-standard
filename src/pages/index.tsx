@@ -8,6 +8,7 @@ import AnimatedText from '@/components/AnimatedText';
 import NavLinks from "./NavLinks";
 import Hamburger from "./Hamburger";
 import AnimatedTextNew from '@/components/AnimatedTextNew';
+import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/outline";
 
 
 
@@ -76,8 +77,10 @@ export const getStaticProps: GetStaticProps = async () => {
 
 const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
 
+
+
   return (
-    <div>
+    <div className="p-2 w-220">
       <div >
         <BasicSlider />
       </div>
@@ -86,12 +89,14 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
           <AnimatedText />
         </h4>
       </section>
-      <div className="flex items-center justify-center flex-wrap ">
-        <article className="flex items-center justify-center md:flex-row flex-wrap ">
+
+      {/* カテゴリボタン */}
+      <div className="flex items-center justify-center flex-wrap">
+        <article className="flex items-center justify-center md:flex-row flex-wrap text-gray-500">
           {categories.map((category) => (
             <button
               type="button"
-              className="flex justify-center items-center flex-wrap md:flex-row m-6 mt-2 rounded-full border-2 border-primary-100 px-10 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 shadow-lg transition duration-150 ease-in-out hover:border-primary-accent-200 hover:bg-secondary-50/50 focus:border-primary-accent-200 focus:bg-secondary-50/50 focus:outline-none focus:ring-0 active:border-primary-accent-200 motion-reduce:transition-none dark:border-primary-400 dark:text-primary-300 dark:hover:bg-blue-950 dark:focus:bg-blue-950"
+              className="m-6 mt-2 rounded-full border-2 border-primary-100 px-10 pb-1 pt-2 text-xs font-medium uppercase leading-normal text-primary-700 shadow-lg transition duration-150 ease-in-out hover:border-[#00c9e8] hover:text-[#00c9e8] focus:border-[#00c9e8] focus:text-[#00c9e8] "
               key={category.id}
             >
               <Link href={`category/${category.id}`}>
@@ -102,31 +107,47 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
         </article>
       </div>
 
-      <div>
+      <div className="">
         <h4 className="flex items-center justify-center m-5 text-xl">   <AnimatedTextNew />
         </h4>
 
+        <div className="max-w-7xl m-2 items-center">
+          <main className="p-2">
+            <article className="flex flex-wrap justify-center gap-6">
+              {blog.map((blog: any) => (
+                <div key={blog.id} className="w-full md:w-1/5 lg:w-1/6 xl:w-1/6 p-4">
+                  <div className="text-center shadow-lg border border-gray-300 rounded-xl bg-white">
+                    <Link href={`blog/${blog.id}`}>
+                      <img
+                        src={blog.item_image.url}
+                        alt={blog.title}
+                        width={blog.item_image.width}
+                        height={blog.item_image.height}
+                        className="items-center object-cover first-letter:mx-auto p-5 "
+                      />
+                    </Link>
+                    <div className="p-4">
+                      <div className="flex justify-center items-center mb-2">
+                        <span className=" text-[#00c9e8] py-2 rounded border-[#203744]mt-1"><MagnifyingGlassCircleIcon className="w-7 h-7 hover:text-blue-500 transition-colors duration-300" />
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-semibold mb-4">{blog.item_name}</h3>
+                      <div className="mb-5">
+                        <p className="text-[12px] font-semibold mb-1">{blog.item_price_tax} 円（税込）</p>
+                        <p className="text-[7px] text-gray-600 ml-2">{blog.item_price} 円（税抜）</p>
+                      </div>
+                      <p className="text-[8px] mb-2">SIZE {blog.item_size}</p>
+                      <p className="text-[8px] ">材質: {blog.item_material}</p>
+                      <p className="text-[8px] ">発送まで: {blog.until_shipping}</p>
+                      <div className="mt-4 flex justify-center">
 
-        <div className="flex flex-wrap justify-center">
-          <article className="flex flex-wrap justify-center m-5">
-            {blog.map((blog) => (
-              <div key={blog.id} className="m-10 text-center shadow-lg border-1 border-gray-300 rounded-xl  ">
-                <Link href={`blog/${blog.id}`}>
-                  <img
-                    src={blog.item_image.url}
-                    alt={blog.title}
-                    width={blog.item_image.width}
-                    height={blog.item_image.height}
-                    className="w-[180px] h-[180px] object-cover first-letter:mx-auto p-5 "
-                  />
-                </Link>
-                <h4 className="m-6 inline-block size-100">{blog.item_name}</h4>
-                <p className="m-6 inline-block size-100">{blog.item_price_tax}円</p>
-
-              </div>
-            ))};
-          </article>
-
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </article>
+          </main>
 
         </div>
 
@@ -169,5 +190,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
     </div>
   );
 };
+
+
 
 export default Home;
