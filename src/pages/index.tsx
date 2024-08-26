@@ -14,7 +14,6 @@ import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/outline";
 
 
 
-
 // ブログデータの型を定義
 interface Blog {
   item_image: any;
@@ -123,7 +122,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
                         alt={blog.title}
                         width={blog.item_image.width}
                         height={blog.item_image.height}
-                        className="items-center object-cover first-letter:mx-auto p-5 "
+                        className="p-6 mt-6 w-full h-48 object-cover rounded-t-xl"
                       />
                     </Link>
                     <div className="p-4">
@@ -133,12 +132,12 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
                       </div>
                       <h3 className="text-xl font-semibold mb-4">{blog.item_name}</h3>
                       <div className="mb-5">
-                        <p className="text-[12px] font-semibold mb-1">{blog.item_price_tax} 円（税込）</p>
+                        <p className="text-[10px] font-semibold mb-1">{blog.item_price_tax} 円（税込）</p>
                         <p className="text-[7px] text-gray-600 ml-2">{blog.item_price} 円（税抜）</p>
                       </div>
-                      <p className="text-[8px] mb-2">SIZE {blog.item_size}</p>
-                      <p className="text-[8px] ">材質: {blog.item_material}</p>
-                      <p className="text-[8px] ">発送まで: {blog.until_shipping}</p>
+                      <p className="text-[7px] mb-2">SIZE {blog.item_size}</p>
+                      <p className="text-[7px] ">材質: {blog.item_material}</p>
+                      <p className="text-[7px] ">発送まで: {blog.until_shipping}</p>
                       <div className="mt-4 flex justify-center">
 
                       </div>
