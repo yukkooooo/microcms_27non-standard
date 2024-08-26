@@ -6,7 +6,7 @@ const AnimatedText = () => (
     whileInView={{ opacity: 10, x: 0 }}  // ビューに入ったときのアニメーション状態
     exit={{ opacity: 0, x: 100 }}  // コンポーネントが消えるときの状態
     transition={{ duration: 2 }}  // アニメーションの速度
-    className="text-xl font-bold text-blue-500"
+    className="text-xl font-bold text-gray-500"
     viewport={{ once: true }}  // ビューに一度だけ表示されたときにアニメーションを実行
   >
     CATEGORY
