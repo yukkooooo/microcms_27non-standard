@@ -1,5 +1,7 @@
 import Button from "@/components/Button";
 import { client } from "../../../libs/client";
+import { HeartIcon } from "@heroicons/react/16/solid";
+import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/outline";
 
 export const getStaticProps = async (context: any) => {
   const id = context.params.id;
@@ -39,18 +41,18 @@ export default function BlogId({ blog }: { blog: any }) {
                 className="w-full object-cover"
               />
               <div className="p-4">
-                <div className="text-right mb-2">
-                  <span className="bg-[#203744] text-white px-4 py-2 rounded text-xs border border-[#203744]">
-                    お気に入りに登録
+                <div className="mb-1">
+                  <span className=" text-[#4682b4] px-1 py-1">
+                    <HeartIcon className="w-7 h-7  text-[#4682b4] hover:text-yellow-500 transition-colors duration-300" />
                   </span>
+
                 </div>
                 <h3 className="text-3xl font-semibold mb-4">{blog.item_name}</h3>
                 <p className="text-sm text-gray-600 mb-4">
                   家具調仏壇は、現代のインテリアに調和するデザインで、収納も兼ねたお仏壇です。<br />
                 </p>
-                <div className="flex items-center">
-                  <p className="font- text-xl">{blog.item_price_tax} 円（税込）</p>
-                  <p className="text-sm">{blog.item_price} 円（税抜）</p>
+                <div className="flex items-center mx-auto justify-center">
+                  <p className="text-[35px] font-semibold mb-1">{blog.item_price_tax} </p> <p className=" px-2 text-xs">円(税込)</p>
                 </div>
                 <p className="text-xl mb-5">SIZE {blog.item_size}</p>
                 <p>材質: {blog.item_material}</p>

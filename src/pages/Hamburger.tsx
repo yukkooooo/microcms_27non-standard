@@ -18,9 +18,6 @@ const Hamburger = () => {
 
 
       </div>
-      <div>
-        <NavLinks setIsMenuOpen={setIsMenuOpen} />
-      </div>
 
       <button
         className=" flex items-center text-green p-3 flex-grow"
@@ -35,6 +32,12 @@ const Hamburger = () => {
           <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
         </svg>
       </button>
+
+      <div>
+        <NavLinks setIsMenuOpen={setIsMenuOpen} />
+      </div>
+
+
       <div
         className={`${isMenuOpen ? "flex" : "hidden"} absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6`}
       ></div>

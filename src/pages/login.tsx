@@ -4,8 +4,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { app } from '@/firebase';
 import HeaderLogin from "@/components/headerlogin";
+import { useRouter } from 'next/router'
 
 const Login: React.FC = () => {
+  const router = useRouter()
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -16,6 +18,9 @@ const Login: React.FC = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
+        router.push('/')
+
+
       })
       .catch((error) => {
         console.error(error);

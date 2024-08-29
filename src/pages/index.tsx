@@ -8,7 +8,8 @@ import AnimatedText from '@/components/AnimatedText';
 import NavLinks from "./NavLinks";
 import Hamburger from "./Hamburger";
 import AnimatedTextNew from '@/components/AnimatedTextNew';
-import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/outline";
+import Button from '@/components/Button';
+import { useRouter } from 'next/router';
 
 
 
@@ -21,6 +22,7 @@ interface Blog {
   title: string;
   item_name: string;
   item_price_tax: number;
+  item_description: string;
 }
 
 // カテゴリーデータの型を定義
@@ -63,6 +65,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
 
 
+
+
   return {
     props: {
       blog: blogData.contents,
@@ -95,7 +99,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
           {categories.map((category) => (
             <button
               type="button"
-              className="m-2 mt-2 rounded-full border-2  px-10 pb-1 pt-2 text-xs font-medium uppercase leading-normal text-primary-700 shadow-lg transition duration-150 ease-in-out hover:border-[#00c9e8] hover:text-[#00c9e8] focus:border-[#00c9e8] focus:text-[#00c9e8] "
+              className="m-2 mt-2 rounded-full border-2  px-10 pb-1 pt-2 text-xs font-medium uppercase leading-normal text-primary-700 shadow-lg transition duration-150 ease-in-out hover:border-[#4682b4] hover:text-[#4682b4] focus:border-[#4682b4] focus:text-[#4682b4] "
               key={category.id}
             >
               <Link href={`category/${category.id}`}>
@@ -115,29 +119,34 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
             <article className="flex flex-wrap justify-center gap-1">
               {blog.map((blog: any) => (
                 <div key={blog.id} className="w-full md:w-1/5 lg:w-1/6 xl:w-1/6 p-4">
-                  <div className="text-center shadow-lg border rounded-xl bg-white">
+                  <h3 className="text-xl font-semibold mb-4">{blog.item_name}</h3>
+
+                  {/* md 以上のサイズで横並びに、md 未満では縦並びに */}
+                  <div className="text-center shadow-lg bg-white flex flex-col md:flex-row justify-center items-center">
                     <Link href={`blog/${blog.id}`}>
                       <img
                         src={blog.item_image.url}
                         alt={blog.title}
-                        width={blog.item_image.width}
-                        height={blog.item_image.height}
-                        className="p-3 mt-2 w-full h-28 object-cover rounded-t-xl"
+                        className="w-full h-auto max-w-xs"
                       />
                     </Link>
-                    <div className="">
-                      <div className="flex justify-center items-center mb-1">
-                        <span className=" text-[#00c9e8] py-1 rounded border-[#203744]"><MagnifyingGlassCircleIcon className="w-7 h-7 hover:text-blue-500 transition-colors duration-300" />
-                        </span>
-                      </div>
-                      <h3 className="text-ms font-semibold mb-1">{blog.item_name}</h3>
-                      <div className="mb-5">
-                        <p className="text-ms mb-1">{blog.item_price_tax} 円(税込)</p>
+
+                    <div className="px-4 py-0.5">
+
+                      <div className="my-2">
+                        <div className="flex items-left px-6">
+                          <p className="text-[25px] font-semibold mb-1">
+                            {blog.item_price_tax}
+                          </p>
+                          <p className="text-xs ml-1 pt-4">円(税込)</p>
+                        </div>
 
                       </div>
 
-                      <div className="mt-4 flex justify-center">
-
+                      <div className="my-4 flex justify-center">
+                        <Button onClick={() => useRouter.push(`/blog/${blog.id}`)}>
+                          more→
+                        </Button>
                       </div>
                     </div>
                   </div>

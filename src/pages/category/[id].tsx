@@ -1,11 +1,6 @@
-import Link from "next/link"
+import Link from "next/link";
 import { client } from "../../../libs/client";
 import Button from "@/components/Button";
-import { HeartIcon } from "@heroicons/react/24/outline";
-import { MagnifyingGlassCircleIcon } from "@heroicons/react/16/solid";
-
-
-
 
 export default function CategoryId({ blog }: { blog: any }) {
   // カテゴリーに紐付いたコンテンツがない場合に表示
@@ -13,47 +8,39 @@ export default function CategoryId({ blog }: { blog: any }) {
     return <div>コンテンツがありません。</div>;
   }
   return (
-
-
-
-
-
-
-
-    <div className="max-w-7xl m-5">
-      <main className="p-5">
-        <article className="flex flex-wrap justify-center gap-6">
+    <div className="mt-20">
+      <main className="flex items-center justify-center m-4 sm:m-6 md:m-8 lg:m-10 xl:m-12 2xl:m-16">
+        <article className="flex flex-wrap items-center justify-center">
           {blog.map((blog: any) => (
-            <div key={blog.id} className="w-full md:w-1/3 lg:w-1/4 xl:w-1/4 p-4">
-              <div className="text-center shadow-lg border border-gray-300 rounded-xl bg-white">
+            <div key={blog.id} className="w-full md:w-1/2 lg:w-1/2 p-4">
+              <h3 className="text-xl font-semibold mb-4">{blog.item_name}</h3>
+
+              {/* md 以上のサイズで横並びに、md 未満では縦並びに */}
+              <div className="text-center shadow-lg bg-white flex flex-col md:flex-row justify-center items-center">
                 <Link href={`blog/${blog.id}`}>
                   <img
                     src={blog.item_image.url}
                     alt={blog.title}
-                    width={150}
-                    height={150}
-                    className="p-6 mt-6 w-full h-48 object-cover rounded-t-xl"
+                    className="w-full h-auto max-w-xs"
                   />
                 </Link>
+
                 <div className="p-4">
-                  <div className="flex justify-center items-center mb-2">
-                    <span className=" text-[#00c9e8] py-2 rounded border-[#203744]mt-1"><MagnifyingGlassCircleIcon className="w-7 h-7 hover:text-blue-500 transition-colors duration-300" />
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-semibold mb-4">{blog.item_name}</h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    家具調仏壇は、現代のインテリアに調和するデザインで、収納も兼ねたお仏壇です。<br />
+                  <p className="text-sm text-gray-600 object-cover p-3">
+                    {blog.item_description}
                   </p>
-                  <div className="mb-5">
-                    <p className="text-[23px] font-semibold mb-2">{blog.item_price_tax} 円（税込）</p>
-                    <p className="text-sm text-gray-600 ml-2">{blog.item_price} 円（税抜）</p>
+                  <div className="my-5">
+                    <div className="flex items-left justify-center">
+                      <p className="text-[25px] font-semibold mb-1">
+                        {blog.item_price_tax}
+                      </p>
+                      <p className="text-xs ml-1 pt-4">円(税込)</p>
+                    </div>
                   </div>
-                  <p className="text-[12px] mb-5">SIZE {blog.item_size}</p>
-                  <p className="text-[12px] ">材質: {blog.item_material}</p>
-                  <p className="text-[12px] ">発送まで: {blog.until_shipping}</p>
+
                   <div className="mt-4 flex justify-center">
                     <Button onClick={() => { /* カートに入れる処理 */ }}>
-                      カートに入れる
+                      more→
                     </Button>
                   </div>
                 </div>
@@ -62,12 +49,10 @@ export default function CategoryId({ blog }: { blog: any }) {
           ))}
         </article>
       </main>
-
     </div>
-
   );
-
 }
+
 // 静的生成のためのパスを指定します
 export const getStaticPaths = async () => {
   const data = await client.get({ endpoint: "categories" });
@@ -87,4 +72,3 @@ export const getStaticProps = async (context: any) => {
     },
   };
 };
-

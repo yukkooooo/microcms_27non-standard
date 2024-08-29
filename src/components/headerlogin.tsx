@@ -1,5 +1,6 @@
 import { useAuth } from '@/context/authContext';
 import { getAuth, signOut } from 'firebase/auth';
+import Link from 'next/link';
 // 適切なパスに置き換えてください
 
 const HeaderLogin = () => {
@@ -35,7 +36,7 @@ const HeaderLogin = () => {
         </div>
       ) : (
         <div className="text-gray-600 text-center m-auto text-s">既に会員登録している方はログインしてください
-          <br /> 新規会員登録の方は<a>こちらから</a></div>
+          <br /> 新規会員登録の方はこちらから</div>
       )}
     </div>
   );
