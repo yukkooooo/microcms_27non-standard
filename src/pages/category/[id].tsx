@@ -1,15 +1,19 @@
 import Link from "next/link";
 import { client } from "../../../libs/client";
 import Button from "@/components/Button";
+import { useRouter } from 'next/router';
 
 export default function CategoryId({ blog }: { blog: any }) {
+  const router = useRouter(); // useRouterを関数として使用
+
   // カテゴリーに紐付いたコンテンツがない場合に表示
   if (blog.length === 0) {
     return <div>コンテンツがありません。</div>;
   }
+
   return (
     <div className="mt-20">
-      <main className="flex items-center justify-center m-4 sm:m-6 md:m-8 lg:m-10 xl:m-12 2xl:m-16">
+      <main className="flex items-center justify-center m-4 sm:m-6 md:m-8 lg:m-12 xl:m-15 2xl:m-20">
         <article className="flex flex-wrap items-center justify-center">
           {blog.map((blog: any) => (
             <div key={blog.id} className="w-full md:w-1/2 lg:w-1/2 p-4">
@@ -26,20 +30,21 @@ export default function CategoryId({ blog }: { blog: any }) {
                 </Link>
 
                 <div className="p-4">
+                  <div className="flex items-left px-6">
+                    <p className="text-[25px] font-semibold mb-1">
+                      {blog.item_price_tax}
+                    </p>
+                    <p className="text-xs ml-1 pt-4">円(税込)</p>
+                  </div>
                   <p className="text-sm text-gray-600 object-cover p-3">
                     {blog.item_description}
                   </p>
                   <div className="my-5">
-                    <div className="flex items-left justify-center">
-                      <p className="text-[25px] font-semibold mb-1">
-                        {blog.item_price_tax}
-                      </p>
-                      <p className="text-xs ml-1 pt-4">円(税込)</p>
-                    </div>
+
                   </div>
 
-                  <div className="mt-4 flex justify-center">
-                    <Button onClick={() => { /* カートに入れる処理 */ }}>
+                  <div className="my-4 flex justify-center">
+                    <Button onClick={() => router.push(`/blog/${blog.id}`)}>
                       more→
                     </Button>
                   </div>
@@ -57,7 +62,9 @@ export default function CategoryId({ blog }: { blog: any }) {
 export const getStaticPaths = async () => {
   const data = await client.get({ endpoint: "categories" });
 
-  const paths = data.contents.map((content: any) => `/category/${content.id}`);
+  const paths = data.contents.map((content: any) => ({
+    params: { id: content.id },
+  }));
   return { paths, fallback: false };
 };
 
