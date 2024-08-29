@@ -84,7 +84,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
         <BasicSlider />
       </div>
       <section className="flex items-center justify-center mt-">
-        <h4 className="flex items-center justify-center m-0 mx-auto text-xl p-10 ">
+        <h4 className="flex items-center justify-center m-0 mx-auto text-xl p-5 ">
           <AnimatedText />
         </h4>
       </section>
@@ -95,7 +95,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
           {categories.map((category) => (
             <button
               type="button"
-              className="m-6 mt-2 rounded-full border-2 border-primary-100 px-10 pb-1 pt-2 text-xs font-medium uppercase leading-normal text-primary-700 shadow-lg transition duration-150 ease-in-out hover:border-[#00c9e8] hover:text-[#00c9e8] focus:border-[#00c9e8] focus:text-[#00c9e8] "
+              className="m-2 mt-2 rounded-full border-2  px-10 pb-1 pt-2 text-xs font-medium uppercase leading-normal text-primary-700 shadow-lg transition duration-150 ease-in-out hover:border-[#00c9e8] hover:text-[#00c9e8] focus:border-[#00c9e8] focus:text-[#00c9e8] "
               key={category.id}
             >
               <Link href={`category/${category.id}`}>
@@ -107,37 +107,35 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
       </div>
 
       <div className="">
-        <h4 className="flex items-center justify-center m-5 text-xl">   <AnimatedTextNew />
+        <h4 className="flex items-center justify-center mt-5 text-xl">   <AnimatedTextNew />
         </h4>
 
-        <div className="max-w-7xl m-2 items-center">
-          <main className="p-2">
-            <article className="flex flex-wrap justify-center gap-6">
+        <div className="max-w-7xl m-1 items-center">
+          <main className="p-1">
+            <article className="flex flex-wrap justify-center gap-1">
               {blog.map((blog: any) => (
                 <div key={blog.id} className="w-full md:w-1/5 lg:w-1/6 xl:w-1/6 p-4">
-                  <div className="text-center shadow-lg border border-gray-300 rounded-xl bg-white">
+                  <div className="text-center shadow-lg border rounded-xl bg-white">
                     <Link href={`blog/${blog.id}`}>
                       <img
                         src={blog.item_image.url}
                         alt={blog.title}
                         width={blog.item_image.width}
                         height={blog.item_image.height}
-                        className="p-6 mt-6 w-full h-48 object-cover rounded-t-xl"
+                        className="p-3 mt-2 w-full h-28 object-cover rounded-t-xl"
                       />
                     </Link>
-                    <div className="p-4">
-                      <div className="flex justify-center items-center mb-2">
-                        <span className=" text-[#00c9e8] py-2 rounded border-[#203744]mt-1"><MagnifyingGlassCircleIcon className="w-7 h-7 hover:text-blue-500 transition-colors duration-300" />
+                    <div className="">
+                      <div className="flex justify-center items-center mb-1">
+                        <span className=" text-[#00c9e8] py-1 rounded border-[#203744]"><MagnifyingGlassCircleIcon className="w-7 h-7 hover:text-blue-500 transition-colors duration-300" />
                         </span>
                       </div>
-                      <h3 className="text-xl font-semibold mb-4">{blog.item_name}</h3>
+                      <h3 className="text-ms font-semibold mb-1">{blog.item_name}</h3>
                       <div className="mb-5">
-                        <p className="text-[10px] font-semibold mb-1">{blog.item_price_tax} 円（税込）</p>
-                        <p className="text-[7px] text-gray-600 ml-2">{blog.item_price} 円（税抜）</p>
+                        <p className="text-ms mb-1">{blog.item_price_tax} 円(税込)</p>
+
                       </div>
-                      <p className="text-[7px] mb-2">SIZE {blog.item_size}</p>
-                      <p className="text-[7px] ">材質: {blog.item_material}</p>
-                      <p className="text-[7px] ">発送まで: {blog.until_shipping}</p>
+
                       <div className="mt-4 flex justify-center">
 
                       </div>
