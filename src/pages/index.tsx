@@ -53,15 +53,20 @@ interface HomeProps {
 
 }
 
+
+
+
+
 // SSG
 // 静的pageはSSG,動的なページはSSRで作成
 export const getStaticProps: GetStaticProps = async () => {
   const categoryData = await client.get({ endpoint: "categories" });
   // console.log(categoryData);
   const blogData = await client.get({ endpoint: "blog" });
-  console.log(blogData);
+  // console.log(blogData);
   const eventData = await client.get({ endpoint: "event" });
   // console.log(eventData)
+
 
 
 
@@ -78,7 +83,9 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
+
 const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
+  const router = useRouter(); // useRouter フックをここで呼び出す
 
 
 
@@ -87,64 +94,65 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
       <div >
         <BasicSlider />
       </div>
-      <section className="flex items-center justify-center mt-">
+      <section className="flex items-center justify-center mt-10">
         <h4 className="flex items-center justify-center m-0 mx-auto text-xl p-5 ">
           <AnimatedText />
         </h4>
       </section>
 
       {/* カテゴリボタン */}
-      <div className="flex items-center justify-center flex-wrap">
-        <article className="flex items-center justify-center md:flex-row flex-wrap text-gray-500">
+      <div className="flex items-center justify-center flex-wrap w-full">
+        <article className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-center text-gray-500 px-1 w-full">
           {categories.map((category) => (
-            <button
-              type="button"
-              className="m-2 mt-2 rounded-full border-2  px-10 pb-1 pt-2 text-xs font-medium uppercase leading-normal text-primary-700 shadow-lg transition duration-150 ease-in-out hover:border-[#4682b4] hover:text-[#4682b4] focus:border-[#4682b4] focus:text-[#4682b4] "
-              key={category.id}
-            >
-              <Link href={`category/${category.id}`}>
-                <p>{category.name}</p>
+            <div className="flex items-center justify-center" key={category.id}>
+              <Link href={`category/${category.id}`} passHref>
+                <button
+                  type="button"
+                  className="w-25 h-25 my-4 mx-1 rounded-full border-2 px-4 pb-2 pt-2 text-xs uppercase leading-normal text-primary-700 shadow-lg transition duration-150 ease-in-out hover:border-[#4682b4] hover:text-[#4682b4] focus:border-[#4682b4] focus:text-[#4682b4]"
+                >
+                  <p>{category.name}</p>
+                </button>
               </Link>
-            </button>
+            </div>
           ))}
         </article>
-      </div>
+      </div >
 
       <div className="">
         <h4 className="flex items-center justify-center mt-5 text-xl">   <AnimatedTextNew />
         </h4>
 
-        <div className="max-w-7xl m-1 items-center">
+        <div className="max-w-7xl m-1 items-center  justify-center">
           <main className="p-1">
-            <article className="flex flex-wrap justify-center gap-1">
+            <article className="flex flex-wrap items-center  justify-center gap-1">
               {blog.map((blog: any) => (
                 <div key={blog.id} className="w-full md:w-1/5 lg:w-1/6 xl:w-1/6 p-4">
-                  <h3 className="text-xl font-semibold mb-4">{blog.item_name}</h3>
+                  <h3 className="text-ms my-6">{blog.item_name}</h3>
 
                   {/* md 以上のサイズで横並びに、md 未満では縦並びに */}
-                  <div className="text-center shadow-lg bg-white flex flex-col md:flex-row justify-center items-center">
+                  <div className="text-center shadow-lg bg-white p-6 mx-auto">
                     <Link href={`blog/${blog.id}`}>
                       <img
                         src={blog.item_image.url}
                         alt={blog.title}
-                        className="w-full h-auto max-w-xs"
+                        className="w-full h-auto max-w-xs mx-auto"
                       />
                     </Link>
 
-                    <div className="px-4 py-0.5">
+                    <div className=" py-0.5">
 
                       <div className="my-2">
-                        <div className="flex items-left px-6">
-                          <p className="text-[25px] font-semibold mb-1">
+                        <div className="flex items-left px-4">
+                          <p className="text-[20px] font-semibold mb-1">
                             {blog.item_price_tax}
                           </p>
-                          <p className="text-xs ml-1 pt-4">円(税込)</p>
+                          <p className="text-xs ml-1 pt-2.5">円(税込)</p>
                         </div>
 
                       </div>
 
                       <div className="my-4 flex justify-center">
-                        <Button onClick={() => useRouter.push(`/blog/${blog.id}`)}>
+                        <Button onClick={() => router.push(`/blog/${blog.id}`)}>
                           more→
                         </Button>
                       </div>
@@ -156,6 +164,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
           </main>
 
         </div>
+
 
 
 
@@ -193,7 +202,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
 
 
       </div>
-    </div>
+    </div >
   );
 };
 
