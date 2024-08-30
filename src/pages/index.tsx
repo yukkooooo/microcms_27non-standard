@@ -108,7 +108,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
 
   return (
 
-    <div className="flex flex-col justify-center min-h-screen">
+    <div className="flex flex-col justify-center min-h-screen max-w-[1200px] mx-auto px-4">
 
 
       <div></div>
@@ -124,7 +124,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
 
       {/* カテゴリボタン */}
       <div className="flex justify-center">
-        <article className="grid grid-cols-1 md:grid-cols-3 gap-1 items-center justify-center text-gray-500 px-1 w-full">
+        <article className="grid grid-cols-2 md:grid-cols-4 gap-1 items-center justify-center text-gray-500 px-1 w-full">
           {categories.map((category) => (
             <div className="flex items-center justify-center" key={category.id}>
               <Link href={`category/${category.id}`} passHref>
@@ -132,7 +132,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
                   type="button"
                   className="my-4 flex justify-center w-full text-sm md:text-base lg:text-lg rounded-full border-2 text-primary-700 shadow-lg transition duration-150 ease-in-out hover:border-[#4682b4] hover:text-[#4682b4] focus:border-[#4682b4] focus:text-[#4682b4]"
                 >
-                  <p className="w-[230px] py-1">{category.name}</p>
+                  <p className="w-[160px] py-1">{category.name}</p>
                 </button>
               </Link>
             </div>
@@ -150,7 +150,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
           <div className="relative">
             {/* 左スクロールボタン */}
             <button
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white-300 bg-opacity-50 p-1 rounded-full text-[#4682b4]"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white-300 bg-opacity-50 rounded-full text-[#4682b4] ml-20 "
               onClick={() => scroll('left')} // 左にスクロールする
             >
               <ArrowLeftCircleIcon className=" w-11 h-11 " />
@@ -158,9 +158,9 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
             {/* スクロール可能なコンテナ */}
             <div
               ref={scrollContainerRef} // スクロールコンテナへの参照
-              className="flex overflow-x-auto whitespace-nowrap"
+              className="flex overflow-x-auto whitespace-nowrap px-4 ml-20"
               style={{
-                padding: '10px 40px', // 横スクロールのためのパディング
+                padding: '0px 40px', // 横スクロールのためのパディング
                 overflowX: 'auto', // 横スクロールを有効にする
                 overflowY: 'hidden', // 縦スクロールを無効にする
                 scrollbarWidth: 'none', // Firefox 用

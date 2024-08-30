@@ -29,14 +29,14 @@ export default function CategoryId({ blog }: { blog: any }) {
                   />
                 </Link>
 
-                <div className="p-4">
-                  <div className="flex items-left px-6">
-                    <p className="text-[25px] font-semibold mb-1">
+                <div className="p-0.5">
+                  <div className="flex items-left px-6 mt-4">
+                    <p className="text-[25px] font-semibold mb-1 mt-4">
                       {blog.item_price_tax}
                     </p>
-                    <p className="text-xs ml-1 pt-4">円(税込)</p>
+                    <p className="text-[15px] ml-1 pt-6">円(税込)</p>
                   </div>
-                  <p className="text-sm text-gray-600 object-cover p-3">
+                  <p className="text-[12px] text-gray-600 object-cover px-3 scroll-py-1 text-left">
                     {blog.item_description}
                   </p>
                   <div className="my-5">
