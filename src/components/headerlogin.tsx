@@ -2,7 +2,7 @@ import { useAuth } from '@/context/authContext';
 import { getAuth, signOut } from 'firebase/auth';
 import Link from 'next/link';
 
-// 適切なパスに置き換えてください
+
 
 const HeaderLogin = () => {
   const auth = getAuth();

@@ -42,7 +42,7 @@ export default function Register() {
       {isLoggedIn && <p className="text-green-500">ログイン中</p>} {/* ログイン中のメッセージ */}
       <div>
         <div className="mb-4">
-          <label className="block text-gray-700">メールアドレス：</label>
+          <label className="block text-gray-700">メールアドレス</label>
           <input
             type="email"
             name="email"
@@ -51,13 +51,14 @@ export default function Register() {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">パスワード：</label>
+          <label className="block text-gray-700">パスワード</label>
           <input
             type="password"
             name="password"
             className="w-full p-3 border border-gray-300 rounded mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <br /><br />パスワード文字数：6文字以上
         </div>
         <button
           className="w-full bg-blue-500 text-white py-3 rounded hover:bg-blue-600"
