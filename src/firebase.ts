@@ -4,17 +4,17 @@ import { getFirestore, Firestore } from 'firebase/firestore';
 import { getAuth, Auth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "process.env.NEXT_PUBLIC_FIREBASE_APIKEY",
+  apiKey: "process.env.NEXT_PUBLIC_FIREBASE_API_KEY",
 
-  authDomain: "process.env.NEXT_PUBLIC_FIREBASE_AUTHDOMAIN ",
+  authDomain: "process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
 
-  projectId: "process.env.NEXT_PUBLIC_FIREBASE_PROJECTID ",
+  projectId: " process.env.NEXT_PUBLIC_FIREBASE_PROJECTID ",
 
-  storageBucket: "process.env.NEXT_PUBLIC_FIREBASE_STORAGEBUCKET",
+  storageBucket: "process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET",
 
-  messagingSenderId: "process.env.NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID",
+  messagingSenderId: "process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
 
-  appId: "process.env.NEXT_PUBLIC_FIREBASE_APP_ID",
+  appId: "process.env.",
 };
 
 // Firebaseを初期化する
