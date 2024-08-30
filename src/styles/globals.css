@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* globals.css */
+
+/* Custom arrow styles */
+.slick-prev,
+.slick-next {
+  position: absolute;
+  z-index: 3;
+  top: 42%;
+  cursor: pointer;
+  outline: none;
+  border-top: 2px solid #ccc;
+  border-right: 2px solid #ccc;
+  height: 25px;
+  width: 25px;
+}
+
+.slick-prev {
+  left: 2.5%;
+  transform: rotate(-135deg);
+}
+
+.slick-next {
+  right: 2.5%;
+  transform: rotate(45deg);
+}
+
+/* Thumbnail styles */
+.choice-btn .slick-slide {
+  cursor: pointer;
+  outline: none;
+  background: #333;
+  width: 25% !important;
+}
+
+.choice-btn .slick-slide img {
+  opacity: 0.4;
+}
+
+.choice-btn .slick-current img {
+  opacity: 1;
+}

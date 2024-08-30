@@ -2,7 +2,7 @@
 import { GetStaticProps } from "next";
 import { client } from "../../libs/client.js";
 import Link from "next/link.js";
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 import BasicSlider from '../components/BasicSlider';
 import AnimatedText from '@/components/AnimatedText';
 import NavLinks from "./NavLinks";
@@ -10,6 +10,7 @@ import Hamburger from "./Hamburger";
 import AnimatedTextNew from '@/components/AnimatedTextNew';
 import Button from '@/components/Button';
 import { useRouter } from 'next/router';
+import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 
 
 
@@ -23,6 +24,7 @@ interface Blog {
   item_name: string;
   item_price_tax: number;
   item_description: string;
+  sub_image: any;
 }
 
 // カテゴリーデータの型を定義
@@ -85,15 +87,36 @@ export const getStaticProps: GetStaticProps = async () => {
 
 
 const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
-  const router = useRouter(); // useRouter フックをここで呼び出す
+  const [visibleCards, setVisibleCards] = useState(10); // 初期表示するカードの数を3に設定
+  const router = useRouter();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+
+
+
+  // スクロールするための関数
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 300; // スクロールする量（ピクセル）
+      scrollContainerRef.current.scrollBy({
+        left: direction === 'right' ? scrollAmount : -scrollAmount, // 左または右にスクロール
+        behavior: 'smooth', // スムーズなスクロール
+      });
+    }
+  };
 
 
   return (
+
     <div className="flex flex-col justify-center min-h-screen">
+
+
+      <div></div>
       <div>
         <BasicSlider />
       </div>
-      <section className="flex items-center justify-center mt-10">
+
+      <section className="flex items-center justify-center mt-10 mb-4">
         <h4 className="flex items-center justify-center m-0 mx-auto text-xl p-5">
           <AnimatedText />
         </h4>
@@ -101,15 +124,15 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
 
       {/* カテゴリボタン */}
       <div className="flex justify-center">
-        <article className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center justify-center text-gray-500 px-1 w-full">
+        <article className="grid grid-cols-1 md:grid-cols-3 gap-1 items-center justify-center text-gray-500 px-1 w-full">
           {categories.map((category) => (
             <div className="flex items-center justify-center" key={category.id}>
               <Link href={`category/${category.id}`} passHref>
                 <button
                   type="button"
-                  className="w-25 h-25 my-4 mx-1 rounded-full border-2 px-4 pb-2 pt-2 text-xs uppercase leading-normal text-primary-700 shadow-lg transition duration-150 ease-in-out hover:border-[#4682b4] hover:text-[#4682b4] focus:border-[#4682b4] focus:text-[#4682b4]"
+                  className="my-4 flex justify-center w-full text-sm md:text-base lg:text-lg rounded-full border-2 text-primary-700 shadow-lg transition duration-150 ease-in-out hover:border-[#4682b4] hover:text-[#4682b4] focus:border-[#4682b4] focus:text-[#4682b4]"
                 >
-                  <p>{category.name}</p>
+                  <p className="w-[230px] py-1">{category.name}</p>
                 </button>
               </Link>
             </div>
@@ -118,19 +141,37 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
       </div>
 
       <div>
-        <h4 className="flex items-center justify-center mt-5 text-xl">
+        <h4 className="flex items-center justify-center mt-10 text-xl mb-10">
           <AnimatedTextNew />
         </h4>
 
+        {/* カード表示セクション */}
         <div className="flex items-center justify-center">
-          <main className="flex justify-center p-1">
-            <article className="flex flex-wrap items-center justify-center gap-1">
-              {blog.map((blog: any) => (
-                <div key={blog.id} className="w-full md:w-1/5 lg:w-1/6 xl:w-1/6 p-4">
+          <div className="relative">
+            {/* 左スクロールボタン */}
+            <button
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white-300 bg-opacity-50 p-1 rounded-full text-[#4682b4]"
+              onClick={() => scroll('left')} // 左にスクロールする
+            >
+              <ArrowLeftCircleIcon className=" w-11 h-11 " />
+            </button>
+            {/* スクロール可能なコンテナ */}
+            <div
+              ref={scrollContainerRef} // スクロールコンテナへの参照
+              className="flex overflow-x-auto whitespace-nowrap"
+              style={{
+                padding: '10px 40px', // 横スクロールのためのパディング
+                overflowX: 'auto', // 横スクロールを有効にする
+                overflowY: 'hidden', // 縦スクロールを無効にする
+                scrollbarWidth: 'none', // Firefox 用
+                msOverflowStyle: 'none', // Internet Explorer 用
+              }}
+            >
+              {blog.slice(0, 5).map((blog: any) => (
+                <div key={blog.id} className="w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 p-2 flex-shrink-0">
                   <h3 className="text-ms my-6">{blog.item_name}</h3>
 
-                  {/* md 以上のサイズで横並びに、md 未満では縦並びに */}
-                  <div className="text-center shadow-lg bg-white p-6 mx-auto">
+                  <div className="text-center shadow-lg bg-white p-2 mx-auto">
                     <Link href={`blog/${blog.id}`}>
                       <img
                         src={blog.item_image.url}
@@ -149,7 +190,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
                         </div>
                       </div>
 
-                      <div className="my-4 flex justify-center w-40 md:w-60 lg:w-80 xl:w-full">
+                      <div className="my-4 flex justify-center w-full">
                         <Button onClick={() => router.push(`/blog/${blog.id}`)}>
                           more→
                         </Button>
@@ -158,10 +199,19 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
                   </div>
                 </div>
               ))}
-            </article>
-          </main>
+            </div>
+            {/* 右スクロールボタン */}
+            <button
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white-300 bg-opacity-50 p-1 rounded-full text-[#4682b4]"
+              onClick={() => scroll('right')} // 右にスクロールする
+            >
+              <ArrowRightCircleIcon className="w-11 h-11" />
+            </button>
+          </div>
         </div>
 
+
+        {/* イベントセクション */}
         <div className="w-4/5 mx-auto">
           <h4 className="flex items-center justify-center m-10 text-xl">EVENT</h4>
 
