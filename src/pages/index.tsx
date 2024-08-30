@@ -88,21 +88,20 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
   const router = useRouter(); // useRouter フックをここで呼び出す
 
 
-
   return (
-    <div className="p-2 w-220">
-      <div >
+    <div className="flex flex-col justify-center min-h-screen">
+      <div>
         <BasicSlider />
       </div>
       <section className="flex items-center justify-center mt-10">
-        <h4 className="flex items-center justify-center m-0 mx-auto text-xl p-5 ">
+        <h4 className="flex items-center justify-center m-0 mx-auto text-xl p-5">
           <AnimatedText />
         </h4>
       </section>
 
       {/* カテゴリボタン */}
-      <div className="flex items-center justify-center flex-wrap w-full">
-        <article className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-center text-gray-500 px-1 w-full">
+      <div className="flex justify-center">
+        <article className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center justify-center text-gray-500 px-1 w-full">
           {categories.map((category) => (
             <div className="flex items-center justify-center" key={category.id}>
               <Link href={`category/${category.id}`} passHref>
@@ -116,15 +115,16 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
             </div>
           ))}
         </article>
-      </div >
+      </div>
 
-      <div className="">
-        <h4 className="flex items-center justify-center mt-5 text-xl">   <AnimatedTextNew />
+      <div>
+        <h4 className="flex items-center justify-center mt-5 text-xl">
+          <AnimatedTextNew />
         </h4>
 
-        <div className="max-w-7xl m-1 items-center  justify-center">
-          <main className="p-1">
-            <article className="flex flex-wrap items-center  justify-center gap-1">
+        <div className="flex items-center justify-center">
+          <main className="flex justify-center p-1">
+            <article className="flex flex-wrap items-center justify-center gap-1">
               {blog.map((blog: any) => (
                 <div key={blog.id} className="w-full md:w-1/5 lg:w-1/6 xl:w-1/6 p-4">
                   <h3 className="text-ms my-6">{blog.item_name}</h3>
@@ -139,19 +139,17 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
                       />
                     </Link>
 
-                    <div className=" py-0.5">
-
-                      <div className="my-2">
-                        <div className="flex items-left px-4">
+                    <div className="flex flex-col items-center py-0.5">
+                      <div className="flex items-left my-2">
+                        <div className="flex items-left px-2">
                           <p className="text-[20px] font-semibold mb-1">
                             {blog.item_price_tax}
                           </p>
                           <p className="text-xs ml-1 pt-2.5">円(税込)</p>
                         </div>
-
                       </div>
 
-                      <div className="my-4 flex justify-center">
+                      <div className="my-4 flex justify-center w-40 md:w-60 lg:w-80 xl:w-full">
                         <Button onClick={() => router.push(`/blog/${blog.id}`)}>
                           more→
                         </Button>
@@ -162,12 +160,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
               ))}
             </article>
           </main>
-
         </div>
-
-
-
-
 
         <div className="w-4/5 mx-auto">
           <h4 className="flex items-center justify-center m-10 text-xl">EVENT</h4>
@@ -175,10 +168,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
           <article className="flex flex-wrap justify-center">
             {event.map((event: any) => (
               <div key={event.id} className="p-3.2 md:w-1/2 lg:w-1/4 flex justify-center items-center">
-
                 <div className="text-center m-10">
-
-
                   <Link href={`event/${event.id}`}>
                     <img
                       src={event.eyecatch_event.url}
@@ -188,24 +178,15 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
                       className="w-[235px] h-[235px] mx-auto object-cover shadow-lg border-2 border-gray-300 rounded-xl"
                     />
                   </Link>
-
                   <h4 className="m-6 inline-block size-100">{event.title_event}</h4>
-
-
-
                 </div>
-
               </div>
             ))}
           </article>
         </div>
-
-
       </div>
-    </div >
+    </div>
   );
 };
-
-
 
 export default Home;
