@@ -59,7 +59,7 @@ export default function BlogId({ blog }: BlogProps) {
   return (
     <main className="flex flex-col lg:flex-row mx-auto my-10 items-center justify-center h-auto lg:h-screen max-w-screen-lg">
       <div className="">
-        <div className="p-10 lg:w-full flex justify-center "> {/* 左 1枚配置 */}
+        <div className="p-4 lg:w-full flex justify-center "> {/* 左 1枚配置 */}
           <img
             src={blog.item_image.url}
             alt={blog.item_name}
@@ -71,17 +71,32 @@ export default function BlogId({ blog }: BlogProps) {
 
 
 
+
       </div>
-      <div className="t-4 mx-10 lg:w-1/2 flex flex-col items-center justify-center lg:justify-start">  {/* 右 */}
+      <div className="t-4 mx-4 lg:w-1/2 flex flex-col items-center justify-center lg:justify-start">  {/* 右 */}
 
 
         <div className="mt-4 m-0 w-full">
-          <h2 className="text-2xl font-bold">{blog.item_name}</h2>
+
+          <div className=""> {/* 画像3枚配置 */}
+            {/* サブ画像 */}
+            <div className="grid grid-cols-3 gap-2 mt-1 mb-10  items-center justify-center ">
+              {blog.sub_image.map((item, index) => (
+                <img
+                  key={index}
+                  src={item.url}
+                  alt={`${blog.title} サブ画像${index + 1}`}
+                  className="object-cover"
+                />
+              ))}
+            </div>
+          </div>
+          <h2 className="text-2xl font-bold mb-4">{blog.item_name}</h2>
 
           <div >
-            <div className="flex justify-end px-5">
+            <div className="flex justify-left px-4">
               <p className="text-[24px] font-semibold mb-1">{blog.item_price_tax} </p>
-              <p className=" px-2 text-xs pt-4 mb-5">円(税込)</p>
+              <p className=" px-1 text-xs pt-4 mb-5">円(税込)</p>
             </div>
 
             <p className="mb-1">SIZE {blog.item_size}</p>
@@ -107,19 +122,7 @@ export default function BlogId({ blog }: BlogProps) {
         </div>
 
 
-        <div className=""> {/* 画像3枚配置 */}
-          {/* サブ画像 */}
-          <div className="grid grid-cols-3 gap-2 mt-15  items-center justify-center ">
-            {blog.sub_image.map((item, index) => (
-              <img
-                key={index}
-                src={item.url}
-                alt={`${blog.title} サブ画像${index + 1}`}
-                className="object-cover"
-              />
-            ))}
-          </div>
-        </div>
+
 
 
       </div>
