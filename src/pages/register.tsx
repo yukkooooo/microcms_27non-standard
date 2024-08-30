@@ -29,7 +29,7 @@ export default function Register() {
       .then((userCredential) => {
         // 登録完了時にトップページにリダイレクト
         alert('登録完了！');
-        router.push('/login');
+        router.push('/');
       })
       .catch((error) => {
         console.log(error);

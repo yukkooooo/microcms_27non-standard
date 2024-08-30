@@ -17,7 +17,7 @@ const Header: React.FC = () => {
     >
       {/* 大きな画面で表示するナビゲーション */}
       <nav className="max-w-[1080px] mx-auto flex justify-between items-center w-full mt-13 max-[899px]:hidden">
-        <Link href="/">
+        <Link href="/login">
         </Link>
         <NavLinks />
         <div className="flex justify-between items-center w-full text-neutral-500">
@@ -27,15 +27,16 @@ const Header: React.FC = () => {
 
           <ul className="flex items-center space-x-1">
             <li className="mx-auto px-1">
-              <Link href="/about">
+              <Link href="/favorite">
                 <HeartIcon className="w-5 h-5 hover:text-blue-500 transition-colors duration-300" />
               </Link>
             </li>
             <li className="mx-auto px-1">
-              <Link href="/about">
+              <Link href="/cart">
                 <ShoppingCartIcon className="w-5 h-5 hover:text-blue-500 transition-colors duration-300" />
               </Link>
             </li>
+
             {isLoggedIn && (
               <li className="flex items-center justify-center mx-auto px-2">
                 <span className="text-xs text-blue-500 flex items-center ">
@@ -44,6 +45,7 @@ const Header: React.FC = () => {
                 </span>
               </li>
             )}
+
           </ul>
         </div>
       </nav>

@@ -18,10 +18,10 @@ const NavLinks = ({ propClass, setIsMenuOpen }: PropsType) => {
   const currentPath = usePathname();
 
   const links: LinkType[] = [
-    { label: "login", href: "/" },
+    { label: "login", href: "/login" },
     { label: "about", href: "/about" },
     { label: "contact", href: "/contact" },
-    { label: "home", href: "/songs" },
+    { label: "home", href: "/" },
   ];
 
   return (
