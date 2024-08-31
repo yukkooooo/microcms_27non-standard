@@ -28,7 +28,7 @@ const Header: React.FC = () => {
       className="flex justify-between items-center w-full px-3 fixed top-0 left-0 bg-white shadow-md z-50 py-2 max-[480px]:py4 max-[480px]:px-4 px-6 z-10"
     >
       {/* 大きな画面で表示するナビゲーション */}
-      <nav className="max-w-[1080px] mx-auto flex justify-between items-center w-full mt-13 max-[899px]:hidden">
+      <nav className="max-w-[90%] mx-auto flex justify-between items-center w-full mt-13 max-[899px]:hidden">
 
         <div className="flex justify-between items-center w-full text-neutral-500">
           <ul className="flex space-x-1">

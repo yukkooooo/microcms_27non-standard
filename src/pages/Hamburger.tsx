@@ -2,10 +2,27 @@
 import { useState } from "react";
 import Link from "next/link";
 import NavLinks from "./NavLinks";
+import { useAuth } from "@/context/authContext";
+
+interface HeaderLoginProps {
+  onSignOut?: () => void;
+}
 
 
 const Hamburger = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  function handleSignOut(): void {
+    throw new Error("Function not implemented.");
+  }
+
+  const { isLoggedIn } = useAuth();
+
+
+
+  function onSignOut(): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
 
     <nav className="relative z-10 pr-8 pl-2 py-2 flex justify-between items-center text-slate-600 bg-white/60 min-[900px]:hidden  min-[900px]:text-white  ">
@@ -35,7 +52,7 @@ const Hamburger = () => {
       </button>
 
       <div>
-        <NavLinks setIsMenuOpen={setIsMenuOpen} isLoggedIn={false} />
+        <NavLinks setIsMenuOpen={setIsMenuOpen} isLoggedIn={isLoggedIn} onSignOut={handleSignOut} />
       </div>
 
 
@@ -51,8 +68,7 @@ const Hamburger = () => {
           <div className="fixed top-0 left-0 bottom-0 flex w-5/6 max-w-sm py-6 px-6 bg-neutral-100/70 overflow-y-auto">
             {/* Logo & Close button */}
             <div className=" items-center mb-2">
-              <Link href="/">
-              </Link>
+
               <button
                 className="navbar-close ml-5"
                 onClick={() => setIsMenuOpen(false)}
@@ -69,7 +85,7 @@ const Hamburger = () => {
               </button>
             </div>
             <div>
-              <NavLinks setIsMenuOpen={setIsMenuOpen} isLoggedIn={false} />
+              <NavLinks setIsMenuOpen={setIsMenuOpen} onSignOut={onSignOut} isLoggedIn={isLoggedIn} />
             </div>
           </div>
         </div>
