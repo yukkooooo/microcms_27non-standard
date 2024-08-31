@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import NavLinks from "./NavLinks";
 import { useAuth } from "@/context/authContext";
+import { getAuth, signOut } from "firebase/auth";
 
 interface HeaderLoginProps {
   onSignOut?: () => void;
@@ -19,8 +20,18 @@ const Hamburger = () => {
 
 
 
+
+
   function onSignOut(): void {
-    throw new Error("Function not implemented.");
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        console.log("User signed out successfully");
+        // 必要に応じてリダイレクトや追加の処理を行う
+      })
+      .catch((error) => {
+        console.error("Error signing out: ", error);
+      });
   }
 
   return (
