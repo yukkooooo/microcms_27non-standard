@@ -11,7 +11,7 @@ import { auth } from '@/firebase';
 
 
 const Header: React.FC = () => {
-  const { isLoggedIn } = useAuth(); // ログイン状態を取得
+  const { isLoggedIn } = useAuth();
 
   const handleSignOut = async () => {
     try {
