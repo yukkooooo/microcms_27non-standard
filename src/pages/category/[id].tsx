@@ -2,13 +2,14 @@ import Link from "next/link";
 import { client } from "../../../libs/client";
 import Button from "@/components/Button";
 import { useRouter } from 'next/router';
+import Image from "next/image";
 
 export default function CategoryId({ blog }: { blog: any }) {
   const router = useRouter(); // useRouterを関数として使用
 
   // カテゴリーに紐付いたコンテンツがない場合に表示
   if (blog.length === 0) {
-    return <div>コンテンツがありません。</div>;
+    return <div className="flex  items-center justify-center min-h-screen mx-auto text-xl">No products.</div>;
   }
 
   return (
@@ -22,9 +23,12 @@ export default function CategoryId({ blog }: { blog: any }) {
               {/* md 以上のサイズで横並びに、md 未満では縦並びに */}
               <div className="text-center shadow-lg bg-white flex flex-col md:flex-row justify-center items-center">
                 <Link href={`blog/${blog.id}`}>
-                  <img
+                  <Image
                     src={blog.item_image.url}
                     alt={blog.title}
+                    width={500}
+                    height={500}
+                    layout="responsive"
                     className="w-full h-auto max-w-xs"
                   />
                 </Link>

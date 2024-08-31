@@ -2,6 +2,7 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 import React from 'react';
 import { client } from "../../../libs/client";
 import Button from "@/components/Button";
+import Image from "next/image";
 
 export const getStaticProps = async (context: any) => {
   const id = context.params.id;
@@ -60,11 +61,13 @@ export default function BlogId({ blog }: BlogProps) {
     <main className="flex flex-col lg:flex-row mx-auto my-10 items-center justify-center h-auto lg:h-screen max-w-screen-lg">
       <div className="">
         <div className="p-4 lg:w-full flex justify-center "> {/* 左 1枚配置 */}
-          <img
+          <Image
             src={blog.item_image.url}
             alt={blog.item_name}
-            width={blog.item_image.width}
-            height={blog.item_image.height}
+            width={500}
+            height={500}
+            layout="responsive"
+
             className=" object-cover"
           />
         </div>
@@ -82,11 +85,14 @@ export default function BlogId({ blog }: BlogProps) {
             {/* サブ画像 */}
             <div className="grid grid-cols-3 gap-2 mt-1 mb-10  items-center justify-center ">
               {blog.sub_image.map((item, index) => (
-                <img
+                <Image
                   key={index}
                   src={item.url}
                   alt={`${blog.title} サブ画像${index + 1}`}
                   className="object-cover"
+                  width={500}
+                  height={500}
+                  layout="responsive"
                 />
               ))}
             </div>

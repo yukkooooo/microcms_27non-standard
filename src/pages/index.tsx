@@ -5,14 +5,12 @@ import Link from "next/link.js";
 import React, { ReactNode, useRef, useState } from 'react';
 import BasicSlider from '../components/BasicSlider';
 import AnimatedText from '@/components/AnimatedText';
-import NavLinks from "./NavLinks";
-import Hamburger from "./Hamburger";
 import AnimatedTextNew from '@/components/AnimatedTextNew';
 import Button from '@/components/Button';
 import { useRouter } from 'next/router';
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 import AnimatedTextEvent from '@/components/AnimatedTextEvent';
-
+import Image from "next/image.js";
 
 
 
@@ -56,10 +54,6 @@ interface HomeProps {
 
 }
 
-
-
-
-
 // SSG
 // 静的pageはSSG,動的なページはSSRで作成
 export const getStaticProps: GetStaticProps = async () => {
@@ -69,10 +63,6 @@ export const getStaticProps: GetStaticProps = async () => {
   // console.log(blogData);
   const eventData = await client.get({ endpoint: "event" });
   // console.log(eventData)
-
-
-
-
 
 
   return {
@@ -91,8 +81,6 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
   const [visibleCards, setVisibleCards] = useState(10); // 初期表示するカードの数を3に設定
   const router = useRouter();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-
 
 
   // スクロールするための関数
@@ -174,9 +162,12 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
 
                   <div className="text-center shadow-lg bg-white p-2 mx-auto">
                     <Link href={`blog/${blog.id}`}>
-                      <img
+                      <Image
                         src={blog.item_image.url}
                         alt={blog.title}
+                        width={500}
+                        height={500}
+                        layout="responsive"
                         className="w-full h-auto max-w-xs mx-auto"
                       />
                     </Link>
@@ -223,11 +214,12 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
               <div key={event.id} className=" md:w-1/2 lg:w-1/3 flex justify-center items-center">
                 <div className="text-center m-10">
                   <Link href={`event/${event.id}`}>
-                    <img
+                    <Image
                       src={event.eyecatch_event.url}
                       alt={event.eyecatch_event}
-                      width={100}
-                      height={100}
+                      width={300}
+                      height={300}
+                      layout="responsive"
                       className="w-[235px] h-[235px] mx-auto object-cover shadow-lg border-2 border-gray-300 rounded-xl"
                     />
                   </Link>

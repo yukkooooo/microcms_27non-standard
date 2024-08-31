@@ -1,5 +1,6 @@
 import { db } from "@/firebase";
 import { collection, getDocs } from "firebase/firestore";
+import Image from "next/image";
 
 import { useEffect, useState } from "react";
 
@@ -16,12 +17,26 @@ interface PostType {
 function Post({ displayName, username, verified, text, avatar, image }: PostType) {
   return (
     <div className="post">
-      <img src={avatar} alt={`${username}'s avatar`} />
+      <Image
+        src={avatar}
+        alt={`${username}'s avatar`}
+        width={500}
+        height={500}
+        layout="responsive"
+      />
       <div className="post-details">
         <h2>{displayName} {verified && <span>✔️</span>}</h2>
         <h4>@{username}</h4>
         <p>{text}</p>
-        {image && <img src={image} alt="Post image" />}
+        {image &&
+          <Image
+            src={image}
+            alt="Post image"
+            width={500}
+            height={500}
+            layout="responsive"
+          />}
+
       </div>
     </div>
   );
