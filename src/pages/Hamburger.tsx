@@ -65,7 +65,7 @@ const Hamburger = () => {
             className="navbar-backdrop fixed inset-0 bg-neutral-800 opacity-75"
             onClick={() => setIsMenuOpen(false)}
           ></div>
-          <div className="fixed top-0 left-0 bottom-0 flex w-5/6 max-w-sm py-6 px-6 bg-neutral-100/70 overflow-y-auto">
+          <div className="fixed top-0 left-0 bottom-0 flex w-full max-w-sm py-6 px-6 bg-neutral-100/70 overflow-y-auto">
             {/* Logo & Close button */}
             <div className=" items-center mb-2">
 
