@@ -24,7 +24,7 @@ export default function Register() {
     return () => unsubscribe();
   }, []);
 
-  const doRegister = () => {
+  const handleRegister = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // 登録完了時にトップページにリダイレクト
@@ -62,7 +62,7 @@ export default function Register() {
         </div>
         <button
           className="w-full bg-blue-500 text-white py-3 rounded hover:bg-blue-600"
-          onClick={doRegister}
+          onClick={handleRegister}
         >
           登録
         </button>
