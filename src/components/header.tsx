@@ -6,10 +6,22 @@ import { HeartIcon, ShoppingCartIcon, UserCircleIcon } from '@heroicons/react/24
 import { useAuth } from '@/context/authContext';
 import NavLinks from '@/pages/NavLinks';
 import Hamburger from '@/pages/Hamburger';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/firebase';
 
 
 const Header: React.FC = () => {
   const { isLoggedIn } = useAuth(); // ログイン状態を取得
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      console.log('Logged out!');
+      // リダイレクトや状態の更新など
+    } catch (error) {
+      console.error('Sign out error:', error);
+    }
+  };
 
   return (
     <header
@@ -17,12 +29,10 @@ const Header: React.FC = () => {
     >
       {/* 大きな画面で表示するナビゲーション */}
       <nav className="max-w-[1080px] mx-auto flex justify-between items-center w-full mt-13 max-[899px]:hidden">
-        <Link href="/login">
-        </Link>
-        <NavLinks />
+
         <div className="flex justify-between items-center w-full text-neutral-500">
           <ul className="flex space-x-1">
-
+            <NavLinks isLoggedIn={isLoggedIn} onSignOut={handleSignOut} />
           </ul>
 
           <ul className="flex items-center space-x-1">

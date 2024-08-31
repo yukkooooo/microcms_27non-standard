@@ -3,14 +3,20 @@ import { getAuth, signOut } from 'firebase/auth';
 import Link from 'next/link';
 
 
+interface HeaderLoginProps {
+  onSignOut?: () => void;
+}
 
-const HeaderLogin = () => {
+
+const HeaderLogin = ({ onSignOut }: HeaderLoginProps) => {
   const auth = getAuth();
   const { currentUser } = useAuth();
+
 
   const handleSignOut = async () => {
     try {
       await signOut(auth);
+      if (onSignOut) onSignOut();
       // サインアウト成功後の処理（リダイレクトなど）
     } catch (error) {
       console.error('Sign out error:', error);
@@ -31,8 +37,7 @@ const HeaderLogin = () => {
             >
               ログアウト
             </button>
-            <button className="text-xs  ml-1 b px-1 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-150 ease-in-out"
-            >topに戻る</button>
+
           </div>
         </div>
       ) : (

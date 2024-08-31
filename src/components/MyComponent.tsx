@@ -32,5 +32,5 @@ export default function MyComponents({ blog }: { blog: any }) {
 
   return
 
-  // ここの処理をかいて
+
 };

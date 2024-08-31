@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import NavLinks from "./NavLinks";
 
+
 const Hamburger = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
@@ -34,7 +35,7 @@ const Hamburger = () => {
       </button>
 
       <div>
-        <NavLinks setIsMenuOpen={setIsMenuOpen} />
+        <NavLinks setIsMenuOpen={setIsMenuOpen} isLoggedIn={false} />
       </div>
 
 
@@ -68,7 +69,7 @@ const Hamburger = () => {
               </button>
             </div>
             <div>
-              <NavLinks setIsMenuOpen={setIsMenuOpen} />
+              <NavLinks setIsMenuOpen={setIsMenuOpen} isLoggedIn={false} />
             </div>
           </div>
         </div>
