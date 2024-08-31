@@ -11,6 +11,7 @@ import AnimatedTextNew from '@/components/AnimatedTextNew';
 import Button from '@/components/Button';
 import { useRouter } from 'next/router';
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from "@heroicons/react/24/outline";
+import AnimatedTextEvent from '@/components/AnimatedTextEvent';
 
 
 
@@ -212,12 +213,14 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
 
 
         {/* イベントセクション */}
-        <div className="w-4/5 mx-auto">
-          <h4 className="flex items-center justify-center m-10 text-xl">EVENT</h4>
+        <div className=" mx-auto">
+          <h4 className="flex items-center justify-center mt-20 mx-auto text-xl ">
+            <AnimatedTextEvent />
+          </h4>
 
           <article className="flex flex-wrap justify-center">
             {event.map((event: any) => (
-              <div key={event.id} className="p-3.2 md:w-1/2 lg:w-1/4 flex justify-center items-center">
+              <div key={event.id} className=" md:w-1/2 lg:w-1/3 flex justify-center items-center">
                 <div className="text-center m-10">
                   <Link href={`event/${event.id}`}>
                     <img
