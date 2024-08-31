@@ -18,7 +18,7 @@ microCMSと連携した動的コンテンツ管理
 ## 使用技術
 ### フロントエンド/バックエンド
 - Next.js
-- TypeScrip
+- TypeScript
 - Tailwind CSS
 - Firebase
   
