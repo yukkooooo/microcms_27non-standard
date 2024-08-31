@@ -108,11 +108,11 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
 
   return (
 
-    <div className="flex flex-col justify-center min-h-screen max-w-[1200px] mx-auto px-4">
+    <div className="flex flex-col justify-center min-h-screen mx-auto px-4 max-w-[1200px]">
 
 
       <div></div>
-      <div>
+      <div className="flex w-max-[1200] justify-center ">
         <BasicSlider />
       </div>
 
@@ -146,11 +146,11 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
         </h4>
 
         {/* カード表示セクション */}
-        <div className="flex items-center justify-center">
-          <div className="relative">
+        <div className="flex items-center justify-center mx-auto ">
+          <div className="relative max-w-full">
             {/* 左スクロールボタン */}
             <button
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white-300 bg-opacity-50 rounded-full text-[#4682b4] ml-20 "
+              className="absolute top-1/2 transform -translate-X-[90%] bg-white bg-opacity-50 rounded-full text-[#4682b4]"
               onClick={() => scroll('left')} // 左にスクロールする
             >
               <ArrowLeftCircleIcon className=" w-11 h-11 " />
@@ -158,9 +158,9 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
             {/* スクロール可能なコンテナ */}
             <div
               ref={scrollContainerRef} // スクロールコンテナへの参照
-              className="flex overflow-x-auto whitespace-nowrap px-4 ml-20"
+              className="flex overflow-x-auto whitespace-nowrap px-4 ml-2"
               style={{
-                padding: '0px 40px', // 横スクロールのためのパディング
+                padding: '0px 10%', // 横スクロールのためのパディング
                 overflowX: 'auto', // 横スクロールを有効にする
                 overflowY: 'hidden', // 縦スクロールを無効にする
                 scrollbarWidth: 'none', // Firefox 用
@@ -168,7 +168,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
               }}
             >
               {blog.slice(0, 5).map((blog: any) => (
-                <div key={blog.id} className="w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 p-2 flex-shrink-0">
+                <div key={blog.id} className=" max-w-full p-2 flex-shrink-0">
                   <h3 className="text-ms my-6">{blog.item_name}</h3>
 
                   <div className="text-center shadow-lg bg-white p-2 mx-auto">
@@ -202,7 +202,7 @@ const Home: React.FC<HomeProps> = ({ blog, categories, event }) => {
             </div>
             {/* 右スクロールボタン */}
             <button
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white-300 bg-opacity-50 p-1 rounded-full text-[#4682b4]"
+              className="absolute right-0 top-1/2 transform -translate-X-[80%]  bg-white-300 bg-opacity-50 rounded-full text-[#4682b4]"
               onClick={() => scroll('right')} // 右にスクロールする
             >
               <ArrowRightCircleIcon className="w-11 h-11" />
